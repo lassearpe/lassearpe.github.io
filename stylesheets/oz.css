@@ -1,0 +1,87 @@
+body {
+    line-height: 1.5;
+    counter-reset: sidenote-counter;
+    padding: 8% 12% 12%;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #363636;
+    background: #fafafa;
+}
+article {
+    max-width: 40rem;
+    margin-bottom: 2em;
+}
+.sidenote, .marginnote {
+    float: right;
+    clear: right;
+    margin-right: -65%;
+    width: 50%;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    vertical-align: baseline;
+    position: relative;
+    margin-bottom: 1em;
+}
+.code, code, .codelike {
+    font-family: monospace;
+}
+.sidenote-number { counter-increment: sidenote-counter; }
+
+.sidenote-number:after, .sidenote:before {
+    position: relative;
+    vertical-align: baseline;
+}
+
+.sidenote-number:after {
+    content: counter(sidenote-counter);
+    font-size: 12px;  /* hardcoded to match sidebar number */
+    top: -0.5rem;
+    left: 0.1rem;
+}
+
+/* The number of the sidenote */
+.sidenote:before {
+    content: counter(sidenote-counter) " ";
+    display: inline-block;
+    position: absolute;
+    transform: translateX(-100%);
+    padding-right: 0.9em;
+    font-size: 12px;  /* hardcoded to match inline sidenote number */
+}
+
+sup { line-height: 0; }
+
+input.margin-toggle { display: none; }
+
+label.sidenote-number { display: inline; }
+
+label.margin-toggle:not(.sidenote-number) { display: none; }
+
+hr {
+    border: 1px solid rgba(0,0,0,0.05);
+    margin: 2em 0;
+}
+    
+@media (max-width: 760px) {
+    .content { width: 90%; margin: 2em auto; padding: 0 5%; }
+    section > p, section > footer, section > table { width: 100%; }
+    pre.code { width: 97%; }
+    section > ol, section > ul { width: 90%; padding-left: 5% }
+    label.margin-toggle:not(.sidenote-number) { display: inline; }
+    .sidenote, .marginnote { display: none; }
+    .margin-toggle:checked + .sidenote,
+    .margin-toggle:checked + .marginnote {
+        display: block;
+        float: left;
+        left: 1rem;
+        clear: both;
+        width: 95%;
+        margin: 1rem 2.5%;
+        vertical-align: baseline;
+        position: relative;
+    }
+    label { cursor: pointer; }
+}
+
+blockquote {
+    font-style: italic;
+}
