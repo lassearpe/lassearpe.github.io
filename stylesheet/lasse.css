@@ -3,8 +3,8 @@ body {
     counter-reset: sidenote-counter;
     padding: 8% 12% 12%;
     font-family: Helvetica, Arial, sans-serif;
-    color: #363636;
-    background: #ffce7b;
+    /* color: #363636; */
+    background: #f0f0f0;
 }
 article {
     max-width: 40rem;
