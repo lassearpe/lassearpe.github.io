@@ -3,8 +3,8 @@ body {
     counter-reset: sidenote-counter;
     padding: 8% 12% 12%;
     font-family: Helvetica, Arial, sans-serif;
-    color: #363636;
-    background: #fafafa;
+    color: #ffce7b;
+    background: #363636;
 }
 article {
     max-width: 40rem;
@@ -94,6 +94,7 @@ blockquote {
     width: 200px;
   }
   
+/* For the vertical sliders.  */
   #range-bars {
     width: 1px;
     height: 10px;
