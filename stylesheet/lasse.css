@@ -34,10 +34,9 @@ article {
 
 .sidenote-number:after {
     content: counter(sidenote-counter);
-    font-size: 12px;  /* hardcoded to match sidebar number */
+    font-size: 12px;  
     top: -0.5rem;
-    left: 0.1rem;
-} */
+    left: 0.1rem;} */
 
 /* The number of the sidenote
 .sidenote:before {
