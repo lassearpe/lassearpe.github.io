@@ -3,18 +3,18 @@ var numVal = document.getElementById("numVal");
 var display = document.getElementById("display");
 var getVal = slider.value;
 
-// const rangeInput = document.getElementById('range');
-// const numVal = document.getElementById('numVal');
+const rangeInput = document.getElementById('range');
+const numVal = document.getElementById('numVal');
 
 function updateNumVal() {
     numVal.textContent = rangeInput.value;
 }
 
 updateNumVal();
-// rangeInput.addEventListener('input', updateNumVal);
+rangeInput.addEventListener('input', updateNumVal);
 
 
-// numVal.innerHTML = getVal; // If you don't want the number to be displayed, delete this. This is to show at which number the label will change
+numVal.innerHTML = getVal; // If you don't want the number to be displayed, delete this. This is to show at which number the label will change
 
 slider.oninput = function() {
     numVal.innerHTML = this.value;// If you don't want the number to be displayed, delete this. This is to show at which number the label will change
