@@ -11,7 +11,7 @@ article {
     max-width: 40rem;
     margin-bottom: 2em;
 }
-.sidenote, .marginnote {
+/* .sidenote, .marginnote {
     float: right;
     clear: right;
     margin-right: -65%;
@@ -37,17 +37,17 @@ article {
     font-size: 12px;  /* hardcoded to match sidebar number */
     top: -0.5rem;
     left: 0.1rem;
-}
+} */
 
-/* The number of the sidenote */
+/* The number of the sidenote
 .sidenote:before {
     content: counter(sidenote-counter) " ";
     display: inline-block;
     position: absolute;
     transform: translateX(-100%);
     padding-right: 0.9em;
-    font-size: 12px;  /* hardcoded to match inline sidenote number */
-}
+    font-size: 12px;  /* hardcoded to match inline sidenote number 
+} */
 
 sup { line-height: 0; }
 
