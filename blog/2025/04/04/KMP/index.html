@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Simple explanation of Knuth Morris Pratt Algorithm</title>
+    <title>Amortizing the Knuth Morris Pratt Algorithm</title>
     <meta charset='UTF-8'>
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
 
@@ -45,8 +45,8 @@
 </div>
     <div class='front-matter'>
         <div class='wrap'>
-            <h1>Simple explanation of Knuth Morris Pratt Algorithm</h1>
-            <h4>Amortized linear cost.</h4>
+            <h1>Amortizing the Knuth Morris Pratt Algorithm</h1>
+            <h4>Where I try to simply explain *why* the KMP algorithm have an amortized linear runtime.</h4>
             <div class='bylines'>
                 <div class='byline'>
                     <h3>Published</h3>
@@ -59,6 +59,11 @@
     <div class='wrap article'>
         <h1 id="string-matching">String Matching</h1>
 
+<p>String matching is used for finding <em>patterns</em> inside of larger <em>texts</em>.</p>
+
+<p>An example of this could be the the pattern <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mtext>ababaca</mtext></mrow><annotation encoding="application/x-tex"> P=\text{ababaca} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">ababaca</span></span></span></span></span></p>
+
+<p>The key to understanding the runtime of the KMP algorithm is understanding the <em>prefix function</em>, (\pi).</p>
 
     </div>
 
