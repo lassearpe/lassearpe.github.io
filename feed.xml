@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="lassearpe.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="lassearpe.github.io/" rel="alternate" type="text/html" /><updated>2025-09-07T19:04:20+02:00</updated><id>lassearpe.github.io/feed.xml</id><title type="html">lassearpe.github.io_Backend</title><entry><title type="html">Test</title><link href="lassearpe.github.io/blog/2025/09/07/Test/" rel="alternate" type="text/html" title="Test" /><published>2025-09-07T00:00:00+02:00</published><updated>2025-09-07T00:00:00+02:00</updated><id>lassearpe.github.io/blog/2025/09/07/Test</id><content type="html" xml:base="lassearpe.github.io/blog/2025/09/07/Test/"><![CDATA[<h1 id="this-is-a-test">This is a test</h1>]]></content><author><name></name></author><summary type="html"><![CDATA[This is a test]]></summary></entry><entry><title type="html">Amortizing the Knuth Morris Pratt Algorithm</title><link href="lassearpe.github.io/blog/2025/04/04/KMP/" rel="alternate" type="text/html" title="Amortizing the Knuth Morris Pratt Algorithm" /><published>2025-04-04T00:00:00+02:00</published><updated>2025-04-04T00:00:00+02:00</updated><id>lassearpe.github.io/blog/2025/04/04/KMP</id><content type="html" xml:base="lassearpe.github.io/blog/2025/04/04/KMP/"><![CDATA[<h1 id="string-matching">String Matching</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="lassearpe.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="lassearpe.github.io/" rel="alternate" type="text/html" /><updated>2025-09-20T12:23:38+02:00</updated><id>lassearpe.github.io/feed.xml</id><title type="html">lassearpe.github.io_Backend</title><entry><title type="html">Probability and Likelihood</title><link href="lassearpe.github.io/blog/2025/09/20/Test/" rel="alternate" type="text/html" title="Probability and Likelihood" /><published>2025-09-20T00:00:00+02:00</published><updated>2025-09-20T00:00:00+02:00</updated><id>lassearpe.github.io/blog/2025/09/20/Test</id><content type="html" xml:base="lassearpe.github.io/blog/2025/09/20/Test/"><![CDATA[<h1 id="what-is-probability">What is probability?</h1>
+
+<p>Probability refers to an <em>anticipation</em> of the probability of an event.</p>
+
+<p>Consider that we have a model, consisting of parameters such as the mean and variance.</p>
+
+<p>This model can provide us with a probability measure of an event, e.g. based on the parameters provided, the probability of the event happening.</p>
+
+<p>This model can be constructed with our knowledge about the world; e.g equal probability of heads and tails in a fair coin, equal probabillity of each side sides in a fair die.</p>
+
+<p>One can see this as going from the model towards the data, e.g in a forward direction.</p>
+
+<h1 id="what-is-likelihood">What is likelihood?</h1>
+
+<p>Likelihood provides us with the tools to judge the quality of the model. To the amount of trust one should put in the chosen parameters.</p>
+
+<p>From wikipedia:</p>
+
+<blockquote>
+  <p>A likelihood function (often simply called the likelihood) measures how well a statistical model explains observed data by calculating the probability of seeing that data under different parameter values of the model. It is constructed from the joint probability distribution of the random variable that (presumably) generated the observations.[1][2][3] When evaluated on the actual data points, it becomes a function solely of the model parameters.</p>
+</blockquote>
+
+<h1 id="bonus-log-likelihhod">Bonus: Log likelihhod</h1>
+
+<p>The likelihood function can be diffisicult to work with, as we have to calculate the joint distribution of the data and a given parameter, for all relevant parameters. The joint distribution (for independent data) is the product of each ….</p>
+
+<p>In log Likelihod, we are converting the likelihood function to the log of the likelihhod function.</p>
+
+<h1 id="bonus-maximum-likelihood-estimation">Bonus: Maximum Likelihood Estimation</h1>
+
+<p>In MLE, we aim to create a model that maximizes the likelihhod of the data observed.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[What is probability?]]></summary></entry><entry><title type="html">Amortizing the Knuth Morris Pratt Algorithm</title><link href="lassearpe.github.io/blog/2025/04/04/KMP/" rel="alternate" type="text/html" title="Amortizing the Knuth Morris Pratt Algorithm" /><published>2025-04-04T00:00:00+02:00</published><updated>2025-04-04T00:00:00+02:00</updated><id>lassearpe.github.io/blog/2025/04/04/KMP</id><content type="html" xml:base="lassearpe.github.io/blog/2025/04/04/KMP/"><![CDATA[<h1 id="string-matching">String Matching</h1>
 
 <p>String matching is used for finding <em>patterns</em> inside of larger <em>texts</em>.</p>
 

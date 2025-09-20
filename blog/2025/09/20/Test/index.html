@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title>Probability and Likelihood</title>
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content='Lasse Arpe Kristensen.'>
+    <!-- <meta name='keywords' content='Probability, Likelihood'> -->
+    <meta name='author' content='Lasse Arpe Kristensen''>
+
+    <link href='/assets/blog.css' rel='stylesheet'/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false  
+        });
+    });
+  </script> -->
+
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/blog'>Blog</a></li>
+        <li><a href='/feed.xml'>RSS</a></li>
+    </ul>
+</div>
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>Probability and Likelihood</h1>
+            <h4>Probability vs likelihood is an important distinction within statistics and probability theory. I found it confusing myself, so i set out to explain it.</h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>20 September 2025</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+        <h1 id="what-is-probability">What is probability?</h1>
+
+<p>Probability refers to an <em>anticipation</em> of the probability of an event.</p>
+
+<p>Consider that we have a model, consisting of parameters such as the mean and variance.</p>
+
+<p>This model can provide us with a probability measure of an event, e.g. based on the parameters provided, the probability of the event happening.</p>
+
+<p>This model can be constructed with our knowledge about the world; e.g equal probability of heads and tails in a fair coin, equal probabillity of each side sides in a fair die.</p>
+
+<p>One can see this as going from the model towards the data, e.g in a forward direction.</p>
+
+<h1 id="what-is-likelihood">What is likelihood?</h1>
+
+<p>Likelihood provides us with the tools to judge the quality of the model. To the amount of trust one should put in the chosen parameters.</p>
+
+<p>From wikipedia:</p>
+
+<blockquote>
+  <p>A likelihood function (often simply called the likelihood) measures how well a statistical model explains observed data by calculating the probability of seeing that data under different parameter values of the model. It is constructed from the joint probability distribution of the random variable that (presumably) generated the observations.[1][2][3] When evaluated on the actual data points, it becomes a function solely of the model parameters.</p>
+</blockquote>
+
+<h1 id="bonus-log-likelihhod">Bonus: Log likelihhod</h1>
+
+<p>The likelihood function can be diffisicult to work with, as we have to calculate the joint distribution of the data and a given parameter, for all relevant parameters. The joint distribution (for independent data) is the product of each ….</p>
+
+<p>In log Likelihod, we are converting the likelihood function to the log of the likelihhod function.</p>
+
+<h1 id="bonus-maximum-likelihood-estimation">Bonus: Maximum Likelihood Estimation</h1>
+
+<p>In MLE, we aim to create a model that maximizes the likelihhod of the data observed.</p>
+
+    </div>
+
+</div>
+</body>
+</html>
