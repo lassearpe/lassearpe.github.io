@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="lassearpe.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="lassearpe.github.io/" rel="alternate" type="text/html" /><updated>2025-09-20T14:15:55+02:00</updated><id>lassearpe.github.io/feed.xml</id><title type="html">lassearpe.github.io_Backend</title><entry><title type="html">Probability and Likelihood</title><link href="lassearpe.github.io/blog/2025/09/20/Test/" rel="alternate" type="text/html" title="Probability and Likelihood" /><published>2025-09-20T00:00:00+02:00</published><updated>2025-09-20T00:00:00+02:00</updated><id>lassearpe.github.io/blog/2025/09/20/Test</id><content type="html" xml:base="lassearpe.github.io/blog/2025/09/20/Test/"><![CDATA[<h1 id="what-is-probability">What is probability?</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="lassearpe.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="lassearpe.github.io/" rel="alternate" type="text/html" /><updated>2025-10-06T12:13:06+02:00</updated><id>lassearpe.github.io/feed.xml</id><title type="html">lassearpe.github.io_Backend</title><entry><title type="html">Inductive Bias and the Weight Competition</title><link href="lassearpe.github.io/blog/2025/10/06/Regularization/" rel="alternate" type="text/html" title="Inductive Bias and the Weight Competition" /><published>2025-10-06T00:00:00+02:00</published><updated>2025-10-06T00:00:00+02:00</updated><id>lassearpe.github.io/blog/2025/10/06/Regularization</id><content type="html" xml:base="lassearpe.github.io/blog/2025/10/06/Regularization/"><![CDATA[<h1 id="inductive-bias-and-weight-competition">Inductive Bias and Weight Competition</h1>
+
+<p>In machine learning, we are interested in a low generalization error. The training error can be arbitrarily optimized emperically, hence the problem of empirical risk minimization.</p>
+
+<p>The interesting thing is how we will inference on unseen data. This is noted as the generalization error.</p>
+
+<p>To achieve a low generalization error, we are deliberately introducing bias.</p>
+
+<p>An example of this is the weight penalization through a regularization term.</p>
+
+<p>When we introduce a regularization term, we are asking our model to <em>choose</em> between weights.  Remember, we want our loss to be as close to zero as possible. If we <em>add</em> the very same weight back into the model, it forces the algorithm to choose weigts differently. To choose weights within a given budget.</p>
+
+<p>Each loss point is the result of the sum of our weighted features. This can be for instance be the absolute value (in ridge, L1), or the squared (in LASSO, L2).</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Inductive Bias and Weight Competition]]></summary></entry><entry><title type="html">Probability and Likelihood</title><link href="lassearpe.github.io/blog/2025/09/20/Test/" rel="alternate" type="text/html" title="Probability and Likelihood" /><published>2025-09-20T00:00:00+02:00</published><updated>2025-09-20T00:00:00+02:00</updated><id>lassearpe.github.io/blog/2025/09/20/Test</id><content type="html" xml:base="lassearpe.github.io/blog/2025/09/20/Test/"><![CDATA[<h1 id="what-is-probability">What is probability?</h1>
 
 <p>Probability refers to an <em>anticipation</em> of the probability of an event.</p>
 
