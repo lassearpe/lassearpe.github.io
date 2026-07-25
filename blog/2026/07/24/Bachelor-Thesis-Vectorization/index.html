@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor</title>
+    <title>Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor (Bachelor Thesis)</title>
     <meta charset='UTF-8'>
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
 
@@ -60,7 +60,7 @@
     <div class='content'>
     <div class='front-matter'>
         <div class='wrap'>
-            <h1>Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor</h1>
+            <h1>Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor (Bachelor Thesis)</h1>
             <h4>Test</h4>
             <div class='bylines'>
                 <div class='byline'>
@@ -72,26 +72,52 @@
         </div>
     </div>
     <div class='wrap article'>
-        <p>This is a test.</p>
+        <p>Vectorizaion, in the context of compilers and High Performance Computing, refers to the transformation of scalar instructions into Single Instruction Multiple Data (SIMD) instructions, allowing the utilization of vector processors. On a higher abstraction-level, vectorization refers to the transformation of the <strong>algorithm</strong>, i.e the nested loop structure, in order to perform parallel computation.</p>
 
-<h3 id="what-is-vectorization-in-the-context-of-compilers">What is Vectorization in the context of compilers?</h3>
+<p>An example of such an algorithm is the <em>direct convolution</em>. It is one way to compute the convolutional operation of the convolutional neural network.</p>
 
-<p>Vectorizaion, in the context of compilers and High Performance Computing, refers to the transformation of scalar instructions into Single Instruction Multiple Data (SIMD) instructions, allowing the utilization of vector processors.</p>
+<h2 id="the-direct-convolution">The Direct Convolution</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OC
+    OH
+        OW
+        # Initialize result
+            IC 
+                KH
+                    KW
+                    # Load data
+                    # Perform computation
+                    # Store data
+
+</code></pre></div></div>
+
+<h2 id="how-do-we-optimize-the-direct-convolution-algorithm">How do we optimize the direct convolution algorithm?</h2>
+
+<p><em>Step one</em>: Increase compute intensity.</p>
+
+<p>Compute intensity can be increased by doing work in parallel. Here, we utilize the vector processing ability of the RISC-V vector extension.</p>
+
+<p><em>Step two</em>: Decrease memory accesses.</p>
+
+<p>Memory accesses encompass the <code class="language-plaintext highlighter-rouge">STORE</code> and <code class="language-plaintext highlighter-rouge">LOAD</code> operations done while the algorithm is computing. 
+This optimization requires the <em>tiling</em> concept. Tiling refers to changing the order of the output computation in order to utilize local memory. 
+That is, the <em>reuse</em> of already loaded data amortizes the cost of memory instructions. This is, again, a consequence of the concrete memory setup of our hardware.</p>
+
+<p>In the context of a scratchpad memory; the memory <em>hierarchy</em> only consists of a fast cache-like on-chip memory, the scratchpad, and the registers; and the main memory.</p>
+
+<p>The direct convolution, when doing inference, refers to the six nested loops iterating through the output tensor dimensions while accessing the input tensor and the weight tensor.</p>
+
+<h4 id="brief-explainer-memory-layout">Brief Explainer: Memory Layout</h4>
 
 <p>An example of this is the RISC-V ISA.</p>
 
-<h5 id="concepts-of-necessity">Concepts of necessity</h5>
+<p>Note that changing the memory layout is not free; but the overhead can be worth it depending on the structure on the full network.</p>
 
-<ul>
-  <li>Tiling</li>
-  <li></li>
-</ul>
-
-<h3 id="vectorization-in-mlir">Vectorization in MLIR</h3>
-
-<h3 id="the-convolutional-operation">The Convolutional Operation</h3>
+<h2 id="three-options-for-convolutional-vectorization">Three options for Convolutional Vectorization</h2>
 
 <h2 id="output-channel-vectorization-a-graphical-illustration">Output Channel Vectorization: A Graphical illustration</h2>
+
+<p><img src="/img/OutputVec.jpg" alt="My image" /></p>
 
 <h3 id="final-results">Final results</h3>
 
