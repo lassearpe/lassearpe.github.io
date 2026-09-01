@@ -119,14 +119,23 @@ That is, the <em>reuse</em> of already loaded data amortizes the cost of memory 
 
 <h2 id="output-channel-vectorization-a-graphical-illustration">Output Channel Vectorization: A Graphical illustration</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Test
-</code></pre></div></div>
+<p>One should note, that the order of the computation - how the dimensions of the convolutional layer tensor will be traversed doing the execution of the algorithm - is an important design choice and has great impact on the performance.</p>
+
+<p>Considering the <em>Direct Convolution</em> algorithm presented above, one can do so along the <em>output channels</em> (“OC”), the <em>spatial dimension</em> (H,W) and the <em>input channel</em> dimension.  Here, I refer to the <em>type</em> of vectorization based on what dimension is being parallelized, in other words; which dimension is the innermost.</p>
+
+<p>For this project, I have chosen to vectorize <em>along the output channel dimension</em> of the convolutional layer tensor.</p>
+
+<p>I chose to vectorize along the <em>output channels</em> for multiple reasons:</p>
+
+<ul>
+  <li>It aligns with the natural factor of the RISC-V Vector Extension (RVV).</li>
+</ul>
 
 <p><img src="/img/OutputVec.jpg" width="800" /></p>
 
 <h2 id="additional-tiling">Additional Tiling</h2>
 
-<p><img src="/img/OutputChanVecSpatialTile.jpg" width="1200" /></p>
+<p><img src="/img/OutputChanVecSpatialTile.jpg" width="800" /></p>
 
 <h2 id="implementation-in-mlir">Implementation in MLIR</h2>
 
