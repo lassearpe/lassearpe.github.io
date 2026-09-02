@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-09-01T20:51:03+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">lassearpe.github.io</title><entry><title type="html">Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor (Bachelor Thesis)</title><link href="http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization/" rel="alternate" type="text/html" title="Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor (Bachelor Thesis)" /><published>2026-07-24T00:00:00+02:00</published><updated>2026-07-24T00:00:00+02:00</updated><id>http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization</id><content type="html" xml:base="http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization/"><![CDATA[<p>Vectorizaion, in the context of compilers and High Performance Computing, refers to the transformation of scalar instructions into Single Instruction Multiple Data (SIMD) instructions, allowing the utilization of vector processors. On a higher abstraction-level, vectorization refers to the transformation of the <strong>algorithm</strong>, i.e the nested loop structure, in order to perform parallel computation.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-09-02T17:53:05+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">lassearpe.github.io</title><entry><title type="html">Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor (Bachelor Thesis)</title><link href="http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization/" rel="alternate" type="text/html" title="Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor (Bachelor Thesis)" /><published>2026-07-24T00:00:00+02:00</published><updated>2026-07-24T00:00:00+02:00</updated><id>http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization</id><content type="html" xml:base="http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization/"><![CDATA[<p>Vectorizaion, in the context of compilers and High Performance Computing, refers to the transformation of scalar instructions into Single Instruction Multiple Data (SIMD) instructions, allowing the utilization of vector processors. On a higher abstraction-level, vectorization refers to the transformation of the <strong>algorithm</strong>, i.e the nested loop structure, in order to perform parallel computation.</p>
 
 <p>An example of such an algorithm is the <em>direct convolution</em>. It is one way to compute the convolutional operation of the convolutional neural network.</p>
 
 <h2 id="the-direct-convolution">The Direct Convolution</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OC
-    OH
-        OW
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for 0...OC
+    for 0...OH
+        for 0...OW
         # Initialize result
-            IC 
-                KH
-                    KW
+            for 0...IC 
+                for 0...KH
+                    for 0...KW
                     # Load data
                     # Perform computation
                     # Store data
@@ -54,18 +54,70 @@ That is, the <em>reuse</em> of already loaded data amortizes the cost of memory 
 <p>I chose to vectorize along the <em>output channels</em> for multiple reasons:</p>
 
 <ul>
-  <li>It aligns with the natural factor of the RISC-V Vector Extension (RVV).</li>
+  <li>It aligns with the natural factor of the RISC-V Vector Extension (RVV) (as opposed to the spatial dimension).</li>
+  <li>Each output channel can be computed in parallel (as opposed to the input channel dimension).</li>
 </ul>
 
 <p><img src="/img/OutputVec.jpg" width="800" /></p>
 
 <h2 id="additional-tiling">Additional Tiling</h2>
 
+<p>As the vectorization does not utilize the full capacity of the 32 vector registers, there is leftover register space for reducing the memory operations.</p>
+
 <p><img src="/img/OutputChanVecSpatialTile.jpg" width="800" /></p>
 
-<h2 id="implementation-in-mlir">Implementation in MLIR</h2>
+<p>The above graphical depiction illustrates a heuristic optimization approach:</p>
+<ul>
+  <li>First, optimize parallelization by choosing the largest possible ““LMUL””.</li>
+  <li>If there are enough leftover registers, use these for storing an intermediate computation.</li>
+</ul>
 
-<h3 id="final-results">Final results</h3>]]></content><author><name></name></author><summary type="html"><![CDATA[Vectorizaion, in the context of compilers and High Performance Computing, refers to the transformation of scalar instructions into Single Instruction Multiple Data (SIMD) instructions, allowing the utilization of vector processors. On a higher abstraction-level, vectorization refers to the transformation of the algorithm, i.e the nested loop structure, in order to perform parallel computation.]]></summary></entry><entry><title type="html">Inductive Bias and the Weight Competition</title><link href="http://localhost:4000/blog/2025/10/06/Regularization/" rel="alternate" type="text/html" title="Inductive Bias and the Weight Competition" /><published>2025-10-06T00:00:00+02:00</published><updated>2025-10-06T00:00:00+02:00</updated><id>http://localhost:4000/blog/2025/10/06/Regularization</id><content type="html" xml:base="http://localhost:4000/blog/2025/10/06/Regularization/"><![CDATA[<h1 id="inductive-bias-and-weight-competition">Inductive Bias and Weight Competition</h1>
+<h4 id="example">Example:</h4>
+
+<p>Assuming the ““NHWC”” tensor structure, where N==1:</p>
+
+<ul>
+  <li><strong>Convolutional Layer 20:</strong></li>
+</ul>
+
+<p>Dimensions: <code class="language-plaintext highlighter-rouge">[14x14,512,512]</code> with kernel size <code class="language-plaintext highlighter-rouge">3x3</code>.</p>
+
+<p>GFLOPS/sec:</p>
+
+<ul>
+  <li><strong>Convolutional Layer 16:</strong></li>
+</ul>
+
+<p>Dimensions: <code class="language-plaintext highlighter-rouge">[224x224, 3, 64]</code></p>
+
+<h2 id="example-modification-of-the-direct-convolution-output-channel-vectorization">Example modification of the Direct Convolution (Output Channel Vectorization)</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+for 0...OC
+    for 0...H
+        for 0...W
+            # Initialize Result Vectors
+            for 0...KH
+                for 0...KW
+                    for 0...IC
+                        # Initialize Weight Vectors
+                        for 0...H_T
+                            for 0...W_T
+                                # Load Input Scalar
+                                # Broadcast Input Scalar to Vector
+                                # Load ResultVector and perform Vector Multiplication with Weights.
+        # Store the finished result vector.
+</code></pre></div></div>
+
+<h2 id="implementation-in-mlir-compiler-infrastructure">Implementation in MLIR Compiler Infrastructure</h2>
+
+<h3 id="final-results">Final results</h3>
+
+<p>All convolutional layers improved compared to the baseline.</p>
+
+<p><strong>Most improved layers:</strong></p>
+
+<p><strong>Least improved layers:</strong></p>]]></content><author><name></name></author><summary type="html"><![CDATA[Vectorizaion, in the context of compilers and High Performance Computing, refers to the transformation of scalar instructions into Single Instruction Multiple Data (SIMD) instructions, allowing the utilization of vector processors. On a higher abstraction-level, vectorization refers to the transformation of the algorithm, i.e the nested loop structure, in order to perform parallel computation.]]></summary></entry><entry><title type="html">Inductive Bias and the Weight Competition</title><link href="http://localhost:4000/blog/2025/10/06/Regularization/" rel="alternate" type="text/html" title="Inductive Bias and the Weight Competition" /><published>2025-10-06T00:00:00+02:00</published><updated>2025-10-06T00:00:00+02:00</updated><id>http://localhost:4000/blog/2025/10/06/Regularization</id><content type="html" xml:base="http://localhost:4000/blog/2025/10/06/Regularization/"><![CDATA[<h1 id="inductive-bias-and-weight-competition">Inductive Bias and Weight Competition</h1>
 
 <p>In machine learning, we are interested in a low generalization error. The training error can be arbitrarily optimized emperically, hence the problem of empirical risk minimization.</p>
 
