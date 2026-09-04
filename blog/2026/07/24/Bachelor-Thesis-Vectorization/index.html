@@ -183,13 +183,14 @@ Importantly, each output needs a contribution from each input layer. Each output
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 for 0...OC
-    for 0...H
-        for 0...W
+    for 0...H with step size H_T
+        for 0...W with step size W_T
             # Initialize Result Vectors
             for 0...KH
                 for 0...KW
                     for 0...IC
                         # Initialize Weight Vectors
+                        # BELOW CONSTITUTES THE SPATIAL TILING
                         for 0...H_T
                             for 0...W_T
                                 # Load Input Scalar

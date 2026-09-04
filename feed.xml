@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-09-03T20:36:43+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">lassearpe.github.io</title><entry><title type="html">Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor (Bachelor Thesis)</title><link href="http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization/" rel="alternate" type="text/html" title="Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor (Bachelor Thesis)" /><published>2026-07-24T00:00:00+02:00</published><updated>2026-07-24T00:00:00+02:00</updated><id>http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization</id><content type="html" xml:base="http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization/"><![CDATA[<p>Vectorizaion, in the context of compilers and High Performance Computing, refers to the transformation of scalar instructions into Single Instruction Multiple Data (SIMD) instructions, allowing the utilization of vector processors. On a higher abstraction-level, vectorization refers to the transformation of the <strong>algorithm</strong>, i.e the nested loop structure, in order to perform parallel computation.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-09-04T10:41:53+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">lassearpe.github.io</title><entry><title type="html">Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor (Bachelor Thesis)</title><link href="http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization/" rel="alternate" type="text/html" title="Vectorization of Convolutional Operation with MLIR for a RISC-V Vector Processor (Bachelor Thesis)" /><published>2026-07-24T00:00:00+02:00</published><updated>2026-07-24T00:00:00+02:00</updated><id>http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization</id><content type="html" xml:base="http://localhost:4000/blog/2026/07/24/Bachelor-Thesis-Vectorization/"><![CDATA[<p>Vectorizaion, in the context of compilers and High Performance Computing, refers to the transformation of scalar instructions into Single Instruction Multiple Data (SIMD) instructions, allowing the utilization of vector processors. On a higher abstraction-level, vectorization refers to the transformation of the <strong>algorithm</strong>, i.e the nested loop structure, in order to perform parallel computation.</p>
 
 <p>An example of such an algorithm is the <em>direct convolution</em>. It is one way to compute the convolutional operation of the convolutional neural network.</p>
 
@@ -109,13 +109,14 @@ Importantly, each output needs a contribution from each input layer. Each output
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 for 0...OC
-    for 0...H
-        for 0...W
+    for 0...H with step size H_T
+        for 0...W with step size W_T
             # Initialize Result Vectors
             for 0...KH
                 for 0...KW
                     for 0...IC
                         # Initialize Weight Vectors
+                        # BELOW CONSTITUTES THE SPATIAL TILING
                         for 0...H_T
                             for 0...W_T
                                 # Load Input Scalar
